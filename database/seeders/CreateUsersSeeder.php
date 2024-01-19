@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class CreateUsersSeeder extends Seeder
 {
@@ -15,25 +16,14 @@ class CreateUsersSeeder extends Seeder
     {
         $users = [
             [
-               'nama'=>'Zein Irfansyah',
-               'nomor_telpon'=>'08123456789',
-               'alamat'=>'Kampung Durian Runtuh, Istanbul, Turkey',
-               'username'=>'zeinirfansyah',
-               'email'=>'12.zeinirfansyah@gmail.com',
-               'role'=>"manager",
-               'password'=> bcrypt('11111111'),
-            ],
-            [
-               'nama'=>'Wildan Hilmi',
-               'nomor_telpon'=>'08987654321',
-               'alamat'=>'Kampung Slumirikiti, Jakarta, Indonesia',
-               'username'=>'wildanhilmi',
-               'email'=>'zeinirfansyah7@gmail.com',
-               'role'=>"admin_obat",
-               'password'=> bcrypt('11111111'),
+                'nama_user' => 'John Doe',
+                'nomor_telpon' => '123456789',
+                'alamat' => '123 Main Street, City',
+                'username' => 'john_doe',
+                'email' => 'john@example.com',
+                'password' => Hash::make('password123'),
+                'role' => 'manager',
             ]
-
-           
         ];
     
         foreach ($users as $key => $user) {

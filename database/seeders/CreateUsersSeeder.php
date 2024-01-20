@@ -16,11 +16,11 @@ class CreateUsersSeeder extends Seeder
     {
         $users = [
             [
-                'nama_user' => 'John Doe',
-                'nomor_telpon' => '123456789',
-                'alamat' => '123 Main Street, City',
-                'username' => 'john_doe',
-                'email' => 'john@example.com',
+                'nama_user' => 'Zein Irfansyah',
+                'nomor_telpon' => '08912345678',
+                'alamat' => 'Shibuya, Tokyo, Japan',
+                'username' => 'zeinirfansyah',
+                'email' => 'mail@zeinirfansyah.me',
                 'password' => Hash::make('password123'),
                 'role' => 'manager',
             ]

@@ -34,7 +34,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function(){
 
 // Manager routes
 Route::middleware(['auth', 'user-access:manager'])->group(function(){
-    Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
+    Route::get('/manager/home', [HomeController::class, 'adminHome'])->name('manager.home');
     // redirect /home to /manager/home
     Route::get('/home', function(){
         return redirect('/manager/home');

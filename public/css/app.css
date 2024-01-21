@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+
+:root {
+    --yellow0: #f39108;
+    --yellow1: #ff990a;
+    --yellow2: #ff9f1c;
+    --yellow3: #ffbf69;
+    --white: #fff;
+    --font_color: #1b1b1b;
+    --blue1: #2ec4b6;
+    --blue2: #cbf3f0;
+}
+
+.app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Afacad", sans-serif;
+    color: var(--font_color);
+}
+
+.btn1 {
+    background-color: var(--yellow1);
+    color: var(--white);
+    transition: 0.3s;
+}
+
+.btn1:hover {
+    background-color: var(--yellow2);
+    color: var(--white);
+    font-weight: 500;
+}

@@ -47,27 +47,27 @@
                 </li>
                 <li class="nav-header">Master</li>
                 <li class="nav-item">
-                    <a href="pages/dashboard.html" class="nav-link">
+                    <a href="{{ route('books.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-cube"></i>
-                        <p>Kategori</p>
+                        <p>Books</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="pages/dashboard.html" class="nav-link">
                         <i class="nav-icon fas fa-cubes"></i>
-                        <p>Produk</p>
+                        <p>Broken Books</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="pages/dashboard.html" class="nav-link">
                         <i class="nav-icon fas fa-id-card"></i>
-                        <p>Member</p>
+                        <p>Customers</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="pages/dashboard.html" class="nav-link">
                         <i class="nav-icon fas fa-truck"></i>
-                        <p>Suplier</p>
+                        <p>Suppliers</p>
                     </a>
                 </li>
                 <li class="nav-header">Transaksi</li>

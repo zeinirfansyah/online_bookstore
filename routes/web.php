@@ -24,21 +24,17 @@ Auth::routes();
 
 // Normal user Routes
 Route::middleware(['auth', 'user-access:customer'])->group(function(){
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/customer', [HomeController::class, 'index'])->name('customer.home');
 });
 
 // Admin routes
 Route::middleware(['auth', 'user-access:admin'])->group(function(){
-    Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+    Route::get('/admin', [HomeController::class, 'adminHome'])->name('admin.home');
 });
 
 // Manager routes
 Route::middleware(['auth', 'user-access:manager'])->group(function(){
-    Route::get('/manager/home', [HomeController::class, 'adminHome'])->name('manager.home');
-    // redirect /home to /manager/home
-    Route::get('/home', function(){
-        return redirect('/manager/home');
-    });
+    Route::get('/manager', [HomeController::class, 'adminHome'])->name('manager.home');
     
     // manager books
     Route::get('/manager/books', [BookController::class, 'index'])->name('books.index');

@@ -11,24 +11,24 @@
 
                         <div class="row mb-3">
                             <label
-                                for="nama"
+                                for="nama_user"
                                 class="col-md-4 col-form-label text-md-end"
-                                >{{ __("Nama") }}</label
+                                >{{ __("Nama_user") }}</label
                             >
 
                             <div class="col-md-6">
                                 <input
-                                    id="nama"
+                                    id="nama_user"
                                     type="text"
-                                    class="form-control @error('nama') is-invalid @enderror"
-                                    name="nama"
-                                    value="{{ old('nama') }}"
+                                    class="form-control @error('nama_user') is-invalid @enderror"
+                                    name="nama_user"
+                                    value="{{ old('nama_user') }}"
                                     required
-                                    autocomplete="nama"
+                                    autocomplete="nama_user"
                                     autofocus
                                 />
 
-                                @error('nama')
+                                @error('nama_user')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

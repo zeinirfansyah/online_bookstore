@@ -37,7 +37,7 @@
             >
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="pages/dashboard.html" class="nav-link">
+                    <a href="{{ route('admin.home') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -107,6 +107,19 @@
                         <i class="nav-icon fas fa-file"></i>
                         <p>Report</p>
                     </a>
+                </li>
+              
+                <!-- manager role only -->
+                @if(auth()->user()->role == 'manager')
+                <li class="nav-header">Manager Only</li>
+                <li class="nav-item">
+                    <a href="pages/dashboard.html" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>User Manager</p>
+                    </a>
+                </li>
+                @endif
+                
                 </li>
                 <li class="nav-header">Settings</li>
                 <li class="nav-item">

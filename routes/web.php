@@ -27,26 +27,24 @@ Route::middleware(['auth', 'user-access:customer'])->group(function(){
     Route::get('/customer', [HomeController::class, 'index'])->name('customer.home');
 });
 
-// Admin routes
+
+// Admin and manager routes
 Route::middleware(['auth', 'user-access:admin'])->group(function(){
     Route::get('/admin', [HomeController::class, 'adminHome'])->name('admin.home');
+
+    Route::prefix('/admin/books')->group(function () {
+        Route::get('/', [BookController::class, 'index'])->name('books.index');
+        Route::get('/create', [BookController::class, 'createBook'])->name('books.create');
+        Route::post('/create', [BookController::class, 'storeBook'])->name('books.store');
+        Route::get('/{id}/update', [BookController::class, 'updateBook'])->name('books.update');
+        Route::put('/{id}/update', [BookController::class, 'editBook'])->name('books.edit');
+        Route::delete('/{id}/delete', [BookController::class, 'deleteBook'])->name('books.delete');
+    });
 });
 
-// Manager routes
+// Manager only
 Route::middleware(['auth', 'user-access:manager'])->group(function(){
     Route::get('/manager', [HomeController::class, 'adminHome'])->name('manager.home');
-    
-    // manager books
-    Route::get('/manager/books', [BookController::class, 'index'])->name('books.index');
-
-    // manager create books
-    Route::get('/manager/books/create', [BookController::class, 'createBook'])->name('books.create');
-    Route::post('/manager/books/create', [BookController::class, 'storeBook'])->name('books.store');
-
-    // manager update book
-    Route::get('/manager/books/{id}/update', [BookController::class, 'updateBook'])->name('books.update');
-    Route::put('/manager/books/{id}/update', [BookController::class, 'editBook'])->name('books.edit');
-    
-    // manager delete book
-    Route::delete('/manager/books/{id}/delete', [BookController::class, 'deleteBook'])->name('books.delete');
 });
+
+

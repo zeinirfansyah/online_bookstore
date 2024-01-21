@@ -16,12 +16,12 @@ class BookController extends Controller
     }
 
     public function createBook() {
-        return view('books.create');
+        return view('dashboard.books.create');
     }
 
     public function updateBook($id) {
         $book = Book::find($id);
-        return view('books.update', compact('book'));
+        return view('dashboard.books.update', compact('book'));
     }
 
     public function storeBook(Request $request) {

@@ -113,7 +113,7 @@
                 @if(auth()->user()->role == 'manager')
                 <li class="nav-header">Manager Only</li>
                 <li class="nav-item">
-                    <a href="pages/dashboard.html" class="nav-link">
+                    <a href="{{route('users.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>User Manager</p>
                     </a>

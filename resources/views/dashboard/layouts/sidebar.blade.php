@@ -47,15 +47,15 @@
                 </li>
                 <li class="nav-header">Master</li>
                 <li class="nav-item">
-                    <a href="{{ route('books.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-cube"></i>
-                        <p>Books</p>
+                    <a href="{{route('book_categories.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-cubes"></i>
+                        <p>Book Categories</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/dashboard.html" class="nav-link">
-                        <i class="nav-icon fas fa-cubes"></i>
-                        <p>Broken Books</p>
+                    <a href="{{ route('books.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-cube"></i>
+                        <p>Books</p>
                     </a>
                 </li>
                 <li class="nav-item">

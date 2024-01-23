@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BookCategoriesController;
+use App\Http\Controllers\BookCategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserDataController;
@@ -38,6 +40,16 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/{id}/update', [BookController::class, 'updateBook'])->name('books.update');
             Route::put('/{id}/update', [BookController::class, 'editBook'])->name('books.edit');
             Route::delete('/{id}/delete', [BookController::class, 'deleteBook'])->name('books.delete');
+        });
+
+        Route::prefix('/admin/book_categories')->group(function () {
+            Route::get('/', [BookCategoryController::class, 'index'])->name('book_categories.index');
+            Route::get('/create', [BookCategoryController::class, 'createBookCategory'])->name('book_categories.create');
+            Route::post('/create', [BookCategoryController::class, 'storeBookCategory'])->name('book_categories.store');
+            Route::get('/{id}/update', [BookCategoryController::class, 'updateBookCategory'])->name('book_categories.update');
+            Route::put('/{id}/update', [BookCategoryController::class, 'editBookCategory'])->name('book_categories.edit');
+            Route::delete('/{id}/delete', [BookCategoryController::class, 'deleteBookCategory'])->name('book_categories.delete');
+          
         });
     });
 

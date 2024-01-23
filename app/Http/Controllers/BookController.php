@@ -12,7 +12,7 @@ class BookController extends Controller
     {
         $books = Book::paginate(8);
 
-        return view('dashboard.books.index', compact('books'));
+        return view('dashboard.books.index', ['books' => $books]);
     }
 
     public function createBook() {

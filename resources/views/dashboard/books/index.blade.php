@@ -181,6 +181,8 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
+                                        <br>
+                                        {{ $books->links('pagination::bootstrap-5') }}
                                     </div>
                                 </div>
                                 <!-- /.card -->

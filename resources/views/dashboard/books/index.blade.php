@@ -129,6 +129,7 @@
                                                     <th>Image</th>
                                                     <th>Title</th>
                                                     <th>Author</th>
+                                                    <th>Category</th>
                                                     <th>Description</th>
                                                     {{-- Add other book details as needed --}}
                                                     <th>Edit</th>
@@ -151,6 +152,8 @@
                                                     </td>
                                                     <td>{{ $book->title }}</td>
                                                     <td>{{ $book->author }}</td>
+                                                    <td>{{ $book->bookCategory->category_name }}</td>
+
                                                     <td>
                                                         {{ $book->description }}
                                                     </td>

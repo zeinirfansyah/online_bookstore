@@ -55,12 +55,12 @@
     />
 
     <label for="category">Category:</label>
-    <input
-        type="text"
-        name="category"
-        value="{{ old('category', $book->category) }}"
-        required
-    />
+    <select name="book_category_id" id="book_category_id">
+        <option value="" selected disabled>Select Category</option>
+        @foreach ($categories as $id => $categoryName)
+        <option value="{{ $id }}">{{ $categoryName }}</option>
+        @endforeach
+    </select>
 
     <label for="publisher">Publisher:</label>
     <input

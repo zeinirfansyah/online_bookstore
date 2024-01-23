@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\BookCategory;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -10,18 +11,24 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = Book::paginate(8);
+        $books = Book::with('bookCategory')->paginate(10);
 
         return view('dashboard.books.index', ['books' => $books]);
     }
 
+   
     public function createBook() {
-        return view('dashboard.books.create');
+        // Ambil semua kategori buku
+    $categories = BookCategory::pluck('category_name', 'id');
+
+    // Kirim data kategori ke view
+    return view('dashboard.books.create', compact('categories'));
     }
 
     public function updateBook($id) {
         $book = Book::find($id);
-        return view('dashboard.books.update', compact('book'));
+        $categories = BookCategory::pluck('category_name', 'id');
+        return view('dashboard.books.update', compact('book', 'categories'));
     }
 
     public function storeBook(Request $request) {
@@ -87,18 +94,19 @@ class BookController extends Controller
         $book = Book::find($id);
 
         $validate = $request->validate([
+            'book_category_id' => 'required',
             'title' => 'required',
             'author' => 'required',
             'description' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'required',
-            'category' => 'required',
             'publisher' => 'required',
             'year' => 'required',
             'language' => 'required',
             'pages' => 'required',
+            'price' => 'required',
             'quantity' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], [
+            'book_category_id.required' => 'Book category is required',
             'title.required' => 'Title is required',
             'author.required' => 'Author is required',
             'description.required' => 'Description is required',
@@ -113,12 +121,10 @@ class BookController extends Controller
         ]);
 
         $book =[
+            'book_category_id' => $request->book_category_id,
             'title' => $request->title,
             'author' => $request->author,
             'description' => $request->description,
-            'image' => $request->image,
-            'price' => $request->price,
-            'category' => $request->category,
             'publisher' => $request->publisher,
             'year' => $request->year,
             'isbn' => $request->isbn,
@@ -126,7 +132,9 @@ class BookController extends Controller
             'pages' => $request->pages,
             'weight' => $request->weight,
             'dimensions' => $request->dimensions,
+            'price' => $request->price,
             'quantity' => $request->quantity,
+            'image' => $request->image,
             'created_at' => now(),
             'updated_at' => now(),
         ];

@@ -112,71 +112,69 @@
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
-                    </div>
-                </div>
-             </div>
-                        
-                        <!-- Main row -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="container">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Category Name</th>
-                                                    <th>Category Description</th>
-                                                    <th>Edit</th>
-                                                    <th>Delete</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($book_categories as $book_category)
-                                                <tr>
-                                                    <td>{{ $book_category->category_name }}</td>
-                                                    <td>{{ $book_category->category_description }}</td>
-                                                    <td>
-                                                        <a
-                                                            href="{{ route('book_categories.update', ['id' => $book_category->id]) }}"
-                                                            class="btn btn-primary"
-                                                            >Edit</a
-                                                        >
-                                                    </td>
-                                                    <td>
-                                                        <form
-                                                            action="{{ route('book_categories.delete', ['id' => $book_category->id]) }}"
-                                                            method="POST"
-                                                        >
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button
-                                                                type="submit"
-                                                                class="btn btn-danger"
-                                                            >
-                                                                Delete
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                        <br>
-                                        {{ $book_categories->links('pagination::bootstrap-5') }}
-                                    </div>
-                                </div>
-                                <!-- /.card -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row (main row) -->
                     </div>
                 </div>
             </div>
+
+            <!-- Main row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Category Name</th>
+                                        <th>Category Description</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($book_categories as $book_category)
+                                    <tr>
+                                        <td>
+                                            {{ $book_category->category_name }}
+                                        </td>
+                                        <td>
+                                            {{ $book_category->category_description }}
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('book_categories.update', ['id' => $book_category->id]) }}"
+                                                class="btn btn-primary"
+                                                >Edit</a
+                                            >
+                                        </td>
+                                        <td>
+                                            <form
+                                                action="{{ route('book_categories.delete', ['id' => $book_category->id]) }}"
+                                                method="POST"
+                                            >
+                                                @csrf @method('DELETE')
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-danger"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <br />
+                            {{ $book_categories->links('pagination::bootstrap-5') }}
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row (main row) -->
         </div>
     </div>
 </div>
 @endsection
-

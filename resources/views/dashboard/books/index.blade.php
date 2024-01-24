@@ -112,92 +112,89 @@
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
-                    </div>
-                </div>
-             </div>
-                        
-                        <!-- Main row -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="container">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Image</th>
-                                                    <th>Title</th>
-                                                    <th>Author</th>
-                                                    <th>Category</th>
-                                                    <th>Description</th>
-                                                    {{-- Add other book details as needed --}}
-                                                    <th>Edit</th>
-                                                    <th>Delete</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($books as $book)
-                                                <tr>
-                                                    <td>
-                                                        <img
-                                                            src="{{ $book->image }}"
-                                                            alt="{{ $book->title }}"
-                                                            class="img-thumbnail"
-                                                            style="
-                                                                max-width: 100px;
-                                                                max-height: 100px;
-                                                            "
-                                                        />
-                                                    </td>
-                                                    <td>{{ $book->title }}</td>
-                                                    <td>{{ $book->author }}</td>
-                                                    <td>{{ $book->bookCategory->category_name }}</td>
-
-                                                    <td>
-                                                        {{ $book->description }}
-                                                    </td>
-                                                    {{-- Add other book details as needed --}}
-                                                    <td>
-                                                        <a
-                                                            href="{{ route('books.update', ['id' => $book->id]) }}"
-                                                            class="btn btn-primary"
-                                                            >Edit</a
-                                                        >
-                                                    </td>
-                                                    <td>
-                                                        <form
-                                                            action="{{ route('books.delete', ['id' => $book->id]) }}"
-                                                            method="POST"
-                                                        >
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button
-                                                                type="submit"
-                                                                class="btn btn-danger"
-                                                            >
-                                                                Delete
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                        <br>
-                                        {{ $books->links('pagination::bootstrap-5') }}
-                                    </div>
-                                </div>
-                                <!-- /.card -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row (main row) -->
                     </div>
                 </div>
             </div>
+
+            <!-- Main row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Title</th>
+                                        <th>Author</th>
+                                        <th>Category</th>
+                                        <th>Description</th>
+                                        {{-- Add other book details as needed --}}
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($books as $book)
+                                    <tr>
+                                        <td>
+                                            <img
+                                                src="{{ $book->image }}"
+                                                alt="{{ $book->title }}"
+                                                class="img-thumbnail"
+                                                style="
+                                                    max-width: 100px;
+                                                    max-height: 100px;
+                                                "
+                                            />
+                                        </td>
+                                        <td>{{ $book->title }}</td>
+                                        <td>{{ $book->author }}</td>
+                                        <td>
+                                            {{ $book->bookCategory->category_name }}
+                                        </td>
+
+                                        <td>
+                                            {{ $book->description }}
+                                        </td>
+                                        {{-- Add other book details as needed --}}
+                                        <td>
+                                            <a
+                                                href="{{ route('books.update', ['id' => $book->id]) }}"
+                                                class="btn btn-primary"
+                                                >Edit</a
+                                            >
+                                        </td>
+                                        <td>
+                                            <form
+                                                action="{{ route('books.delete', ['id' => $book->id]) }}"
+                                                method="POST"
+                                            >
+                                                @csrf @method('DELETE')
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-danger"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <br />
+                            {{ $books->links('pagination::bootstrap-5') }}
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row (main row) -->
         </div>
     </div>
 </div>
-@endsection
 
+@endsection

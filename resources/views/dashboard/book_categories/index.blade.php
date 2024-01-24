@@ -27,6 +27,7 @@
             <!-- filter and search -->
             <div class="row">
                 <div class="col-md-12">
+                   <div class="container-fluid">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Filter and Search</h3>
@@ -55,6 +56,7 @@
                             </div>
                         </div>
                     </div>
+                   </div>
                 </div>
             </div>
 
@@ -62,52 +64,54 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="container-fluid">
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Category Name</th>
-                                        <th>Category Description</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($book_categories as $book_category)
-                                    <tr>
-                                        <td>
-                                            {{ $book_category->category_name }}
-                                        </td>
-                                        <td>
-                                            {{ $book_category->category_description }}
-                                        </td>
-                                        <td>
-                                            <a
-                                                href="{{ route('book_categories.update', ['id' => $book_category->id]) }}"
-                                                class="btn btn-primary"
-                                                >Edit</a
-                                            >
-                                        </td>
-                                        <td>
-                                            <form
-                                                action="{{ route('book_categories.delete', ['id' => $book_category->id]) }}"
-                                                method="POST"
-                                            >
-                                                @csrf @method('DELETE')
-                                                <button
+                        <div class="card">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Category Name</th>
+                                            <th>Category Description</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($book_categories as $book_category)
+                                        <tr>
+                                            <td>
+                                                {{ $book_category->category_name }}
+                                            </td>
+                                            <td>
+                                                {{ $book_category->category_description }}
+                                            </td>
+                                            <td>
+                                                <a
+                                                    href="{{ route('book_categories.update', ['id' => $book_category->id]) }}"
+                                                    class="btn btn-primary"
+                                                    >Edit</a
+                                                >
+                                               
+                                                <form
+                                                    action="{{ route('book_categories.delete', ['id' => $book_category->id]) }}"
+                                                    method="POST"
+                                                    class="d-inline"
+                                                >
+                                                    @csrf @method('DELETE')
+                                                    <button
                                                     type="submit"
                                                     class="btn btn-danger"
-                                                >
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            <br />
-                            {{ $book_categories->links('pagination::bootstrap-5') }}
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <br />
+                                {{ $book_categories->links('pagination::bootstrap-5') }}
+                            </div>
                         </div>
                     </div>
                     <!-- /.card -->

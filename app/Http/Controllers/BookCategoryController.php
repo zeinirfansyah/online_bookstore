@@ -26,9 +26,10 @@ class BookCategoryController extends Controller
 
     public function storeBookCategory(Request $request) {
         $validate = $request->validate([
-            'category_name' => 'required',
+            'category_name' => 'required | unique:book_categories,category_name',
         ], [
             'category_name.required' => 'Category name is required',
+            'category_name.unique' => 'Category name already exists',
         ]);
 
         $book_category =[

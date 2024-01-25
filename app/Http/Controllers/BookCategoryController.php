@@ -15,7 +15,8 @@ class BookCategoryController extends Controller
     }
 
     public function createBookCategory() {
-        return view('dashboard.book_categories.create');
+        $book_categories = BookCategory::paginate(5);
+        return view('dashboard.book_categories.create', ['book_categories' => $book_categories]);
     }
 
     public function updateBookCategory($id) {

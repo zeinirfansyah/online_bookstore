@@ -87,7 +87,9 @@
                     </tbody>
                   </table>
                   <br />
-                  {{ $book_categories->links('pagination::bootstrap-5') }}
+                  <div class="mx-3">
+                    {{ $book_categories->links('pagination::bootstrap-5') }}
+                  </div>
                 </div>
               </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserDataController extends Controller
 {
@@ -56,11 +57,82 @@ class UserDataController extends Controller
         return view('dashboard.users.detail', compact('user'));
     }
 
+    public function updateUser($id)
+    {
+        $user = User::find($id);
+        $roles = ['admin', 'user'];
+        return view('dashboard.users.update', compact('user', 'roles'));
+    }
+
+    public function editUser(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $validate = $request->validate([
+            'nama_user' => 'required|string|max:255',
+            'nomor_telpon' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . $id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'avatar' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'role' => 'required|string|max:255',
+        ], [
+            'required' => ':attribute harus diisi.',
+            'unique' => ':attribute sudah ada.',
+            'string' => ':attribute harus string.',
+            'max' => ':attribute maksimal 255 karakter.',
+            'min' => ':attribute minimal 8 karakter.',
+            'email' => ':attribute harus email.',
+            'image' => ':attribute harus jpeg, png, jpg.',
+            'mimes' => ':attribute harus jpeg, png, jpg.',
+            'max' => ':attribute maksimal 2 MB.',
+        ]);
+
+        // Handle file upload
+        $currentAvatar = $user->avatar;
+        $filename = $this->handleAvatarUpload($request, $currentAvatar);
+
+
+        $user = [
+            'nama_user' => $request->nama_user,
+            'nomor_telpon' => $request->nomor_telpon,
+            'alamat' => $request->alamat,
+            'username' => $request->username,
+            'email' => $request->email,
+            'avatar' => $filename,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        $user = User::where('id', $id)->update($user);
+
+        return redirect()->route('users.detail', ['id' => $id])->with('success', 'User data updated successfully');
+    }
+
     public function deleteUser($id)
     {
         $user = User::find($id);
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'User data deleted successfully');
+    }
+
+    // handle upload avatar
+    private function handleAvatarUpload(Request $request, $currentAvatar)
+    {
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+
+            // Save the file in the 'public/avatars' directory
+            $avatar->storeAs('public/avatars', $filename);
+
+            return $filename; // Return the generated filename
+        }
+
+        // If no new avatar file is provided, return the current avatar filename
+        return $currentAvatar;
     }
 }

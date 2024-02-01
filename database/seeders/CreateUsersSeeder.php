@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
 
 class CreateUsersSeeder extends Seeder
 {
@@ -14,40 +16,19 @@ class CreateUsersSeeder extends Seeder
      */
     public function run()
     {
-        $users = [
-            [
-                'nama_user' => 'zeemarimo',
-                'nomor_telpon' => '3252525',
-                'alamat' => 'Shibuya, Tokyo, Japan',
-                'username' => 'zeemarimo',
-                'email' => '12.zeinirfansyah@gmail.com',
-                'password' => Hash::make('password123'),
-                'role' => 'manager',
-            ],
-            [
-                'nama_user' => 'zeinirfansyah',
-                'nomor_telpon' => '3252525',
-                'alamat' => 'Shibuya, Tokyo, Japan',
-                'username' => 'zeinirfansyah',
-                'email' => 'mail@zeinirfansyah.me',
-                'password' => Hash::make('password123'),
-                'role' => 'admin',
-            ],
-            [
-                'nama_user' => 'nom nom',
-                'nomor_telpon' => '3252525',
-                'alamat' => 'Shibuya, Tokyo, Japan',
-                'username' => 'nomnom',
-                'email' => 'zeinirfansyah7@gmail.com',
-                'password' => Hash::make('password123'),
-                'role' => 'customer',
-            ],
+        $faker = Faker::create();
 
-
-        ];
-    
-        foreach ($users as $key => $user) {
-            User::create($user);
-        }
+       for ($i = 0; $i < 15; $i++) {
+        DB::table('users')->insert([
+                'nama_user'=>$faker->name(),
+                'nomor_telpon'=>$faker->phoneNumber(),
+                'alamat'=>$faker->address(),
+                'username'=>$faker->userName(),
+                'email'=>$faker->email(),
+                // role randomly set user, admin, manager
+                'role'=>$faker->randomElement(['user', 'admin', 'manager']),
+                'password'=> bcrypt('password123'),
+            ]);
+       }
     }
 }

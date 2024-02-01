@@ -41,6 +41,10 @@
               <div class="col-md-6">
                 <table class="table table-bordered">
                     <tr>
+                        <th>Full Name</th>
+                        <td>{{ $user->nama_user }}</td>
+                    </tr>
+                    <tr>
                       <th>Username</th>
                       <td>{{ $user->username }}</td>
                     </tr>
@@ -81,7 +85,7 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="btn btn-primary">Edit Data</a>
+            <a href="{{ route('users.update', ['id' => $user->id]) }}" class="btn btn-primary">Edit Data</a>
           </div>
         </div>
       </div>

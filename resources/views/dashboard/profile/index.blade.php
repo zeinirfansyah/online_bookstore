@@ -32,13 +32,17 @@
           <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
               <h3>{{ $user->nama_user }}</h3>
-              <strong class="alert alert-info px-2 py-1">{{ $user->role }}</strong>
+              <strong class="alert alert-info px-2 py-1">{{ ucfirst($user->role) }}</strong>
             </div>
           </div>
           <div class="card-body">
             <div class="row">
               <div class="col-md-6">
                 <table class="table table-bordered">
+                    <tr>
+                        <th>Full Name</th>
+                        <td>{{ ucfirst($user->nama_user) }}</td>
+                    </tr>
                     <tr>
                       <th>Username</th>
                       <td>{{ $user->username }}</td>

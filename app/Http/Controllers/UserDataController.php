@@ -49,4 +49,12 @@ class UserDataController extends Controller
             'sortOrder' => $request->get('sort_order'),
         ]);
     }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'User data deleted successfully');
+    }
 }

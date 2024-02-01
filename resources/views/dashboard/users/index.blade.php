@@ -112,12 +112,36 @@
                             <td>
                               <a href="#" class="btn btn-default">Detail</a>
 
-                              <form action="#" method="POST"
+                              <form action="{{ route('users.delete', ['id' => $user->id]) }}" method="POST"
                                 class="d-inline">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                  data-target="#deleteModal{{ $user->id }}">
                                   Delete
                                 </button>
+
+                                <!-- Confirmation alert modal -->
+                                <div class="modal fade" id="deleteModal{{ $user->id }}" tabindex="-1" role="dialog"
+                                  aria-labelledby="deleteModalLabel{{ $user->id }}" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h4 class="modal-title" id="deleteModalLabel{{ $user->id }}">Confirmation</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <p>Are you sure you want to delete this user?</p>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                               </form>
                             </td>
                           </tr>
@@ -128,7 +152,7 @@
                   <br />
                   <div class="mx-3">
                     {{ $users->appends(['sort_column' => $sortColumn, 'sort_order' => $sortOrder, 'search' => request('search'), 'role' => request('role')])->links('pagination::bootstrap-5') }}
-                </div>
+                  </div>
                 </div>
               </div>
             </div>

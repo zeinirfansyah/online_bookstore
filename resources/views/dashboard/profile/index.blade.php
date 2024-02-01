@@ -84,7 +84,7 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="btn btn-primary">Edit Data</a>
+            <a href="{{ route('profile.update', ['id' => $user->id]) }}" class="btn btn-primary">Edit Data</a>
           </div>
         </div>
       </div>

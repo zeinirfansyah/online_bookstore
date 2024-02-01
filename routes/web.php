@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function(){
     Route::middleware(['auth', 'user-access:manager'])->group(function(){
         Route::get('/manager/users-management', [UserDataController::class, 'index'])->name('users.index');
         Route::delete('/{id}/delete', [UserDataController::class, 'deleteUser'])->name('users.delete');
+        Route::get('/{id}/detail', [UserDataController::class, 'detailUser'])->name('users.detail');
     });
 
 });

@@ -110,8 +110,8 @@
                               {{ $user->email }}
                             </td>
                             <td>
-                              <a href="#" class="btn btn-default">Detail</a>
-
+                              <a href="{{ route('users.detail', ['id' => $user->id]) }}" class="btn btn-default">Detail</a>
+                              
                               <form action="{{ route('users.delete', ['id' => $user->id]) }}" method="POST"
                                 class="d-inline">
                                 @csrf

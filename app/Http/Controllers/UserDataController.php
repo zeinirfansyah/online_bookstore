@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class UserDataController extends Controller
 {
-       public function index(Request $request)
+    public function index(Request $request)
     {
         // Use a dynamic query to adjust based on the user's role
         $usersQuery = User::query();
@@ -48,6 +48,12 @@ class UserDataController extends Controller
             'sortColumn' => $request->get('sort_column'),
             'sortOrder' => $request->get('sort_order'),
         ]);
+    }
+
+    public function detailUser($id)
+    {
+        $user = User::find($id);
+        return view('dashboard.users.detail', compact('user'));
     }
 
     public function deleteUser($id)

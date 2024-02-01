@@ -26,7 +26,7 @@
       </div>
       <div class="info">
         <strong class="d-block">{{ auth()->user()->nama_user }}</strong>
-       <span class="d-block">{{ ucfirst($user->role) }}</span>
+       <span class="d-block">{{ ucfirst(auth()->user()->role) }}</span>
       </div>
     </div>
 

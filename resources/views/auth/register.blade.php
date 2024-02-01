@@ -89,7 +89,7 @@
                 <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label>
                 <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror"
                   name="avatar">
-                @error('password')
+                @error('avatar')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>

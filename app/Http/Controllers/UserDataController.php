@@ -68,8 +68,8 @@ class UserDataController extends Controller
             'nama_user' => 'required|string|max:255',
             'nomor_telpon' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
+            'username' => 'required|string|max:255|regex:/^[A-Za-z0-9_.-]+$/|unique:users,username,' . $request->id,
+            'email' => 'required|string|email|max:255|unique:users' . $request->id,
             'avatar' => 'image|mimes:jpeg,png,jpg|max:2048',
             'password' => 'required|string|min:8',
             'role' => 'required|string|max:255',
@@ -83,6 +83,7 @@ class UserDataController extends Controller
             'image' => ':attribute harus jpeg, png, jpg.',
             'mimes' => ':attribute harus jpeg, png, jpg.',
             'max' => ':attribute maksimal 2 MB.',
+            'regex' => 'pastikan :attribute hanya diisi oleh huruf dan angka.',
         ]);
 
         $filename = $this->handleAvatarUpload($request, 'default_avatar.jpg');
@@ -120,7 +121,7 @@ class UserDataController extends Controller
             'nama_user' => 'required|string|max:255',
             'nomor_telpon' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username,' . $id,
+            'username' => 'required|string|max:255|regex:/^[A-Za-z0-9_.-]+$/|unique:users,username,' . $id,
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'avatar' => 'image|mimes:jpeg,png,jpg|max:2048',
             'role' => 'required|string|max:255',
@@ -134,6 +135,7 @@ class UserDataController extends Controller
             'image' => ':attribute harus jpeg, png, jpg.',
             'mimes' => ':attribute harus jpeg, png, jpg.',
             'max' => ':attribute maksimal 2 MB.',
+            'regex' => 'pastikan :attribute hanya diisi oleh huruf dan angka.',
         ]);
 
         // Handle file upload
@@ -148,7 +150,6 @@ class UserDataController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'avatar' => $filename,
-            'password' => Hash::make($request->password),
             'role' => $request->role,
             'created_at' => now(),
             'updated_at' => now(),

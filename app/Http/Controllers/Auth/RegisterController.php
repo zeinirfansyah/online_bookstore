@@ -53,8 +53,8 @@ class RegisterController extends Controller
             'nama_user' => 'required|string|max:255',
             'nomor_telpon' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
+            'username' => 'required|string|max:255|regex:/^[A-Za-z0-9_.-]+$/|unique:users,username',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'avatar' => 'image|mimes:jpeg,png,jpg|max:2048',
             'password' => 'required|string|min:8|confirmed',
 
@@ -68,6 +68,7 @@ class RegisterController extends Controller
             'image' => ':attribute harus jpeg, png, jpg.',
             'mimes' => ':attribute harus jpeg, png, jpg.',
             'max' => ':attribute maksimal 2 MB.',
+            'regex' => 'pastikan :attribute hanya diisi oleh huruf dan angka.',
         ]);
 
         // Handle file upload

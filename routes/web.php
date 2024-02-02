@@ -68,6 +68,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/{id}/update', [UserDataController::class, 'updateUser'])->name('users.update');
         Route::put('/{id}/update', [UserDataController::class, 'editUser'])->name('users.edit');
         Route::get('/create', [UserDataController::class, 'createUser'])->name('users.create');
+        Route::post('/create', [UserDataController::class, 'storeUser'])->name('users.store');
     });
 
 });

@@ -28,7 +28,7 @@
             <div class="container-fluid">
               <div class="card">
                 <div class="card-header">
-                  <a href="#" class="btn btn-default">Add User</a>
+                  <a href="{{route('users.create')}}" class="btn btn-default">Add User</a>
 
                   <div class="card-tools">
                     <form method="GET" action="{{ route('users.index') }}" class="form-inline">

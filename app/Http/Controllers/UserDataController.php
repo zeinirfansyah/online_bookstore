@@ -57,6 +57,11 @@ class UserDataController extends Controller
         return view('dashboard.users.detail', compact('user'));
     }
 
+    public function createUser()
+    {
+        return view('dashboard.users.create');
+    }
+
     public function updateUser($id)
     {
         $user = User::find($id);

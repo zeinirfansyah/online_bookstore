@@ -67,7 +67,7 @@
 
                 <!-- password input -->
                 <label for="password" class="form-label">Password</label>
-                <input name="password" type="password" value="{{ old('username') }}" placeholder="Masukan Password" class="form-control" />
+                <input name="password" type="password" value="{{ old('password') }}" placeholder="Masukan Password" class="form-control" />
 
                 <!-- role dropdown -->
                 <label for="role" class="form-label">Role</label>

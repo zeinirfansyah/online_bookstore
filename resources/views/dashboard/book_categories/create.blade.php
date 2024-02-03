@@ -10,7 +10,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">Home</li>
               <li class="breadcrumb-item">Book Categories</li>
-              <li class="breadcrumb-item active">Create Book</li>
+              <li class="breadcrumb-item active">Create Category</li>
             </ol>
           </div>
         </div>

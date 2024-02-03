@@ -21,7 +21,8 @@ class BookCategoryController extends Controller
 
     public function updateBookCategory($id) {
         $book_category = BookCategory::find($id);
-        return view('dashboard.book_categories.update', compact('book_category'));
+        $book_categories = BookCategory::paginate(5);
+        return view('dashboard.book_categories.update', compact('book_category', 'book_categories'));
     }
 
     public function storeBookCategory(Request $request) {

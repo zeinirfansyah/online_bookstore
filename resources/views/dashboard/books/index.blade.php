@@ -62,7 +62,10 @@
                           <th>Title</th>
                           <th>Author</th>
                           <th>Category</th>
-                          <th>Description</th>
+                          <th>Publisher</th>
+                          <th>Language</th>
+                          <th>Quantity</th>
+                          <th>Price</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
@@ -74,10 +77,10 @@
                             <td>
                               {{ $book->bookCategory->category_name }}
                             </td>
-    
-                            <td>
-                              {{ $book->description }}
-                            </td>
+                            <td>{{ $book->publisher }}</td>
+                            <td>{{ $book->language }}</td>
+                            <td>{{ $book->quantity }}</td>
+                            <td>Rp.{{ $book->price }}</td>
                             <td>
                                 <a href="{{ route('books.detail', ['id' => $book->id]) }}"
                                   class="btn btn-primary">Detail</a>

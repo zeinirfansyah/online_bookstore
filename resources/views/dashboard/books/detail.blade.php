@@ -8,9 +8,9 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item">Home</li>
-              <li class="breadcrumb-item">Book Management</li>
-              <li class="breadcrumb-item active">Detail Book</li>
+              <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('books.index') }}">Books</a></li>
+              <li class="breadcrumb-item active">{{ $book->title }}</li>
             </ol>
           </div>
         </div>
@@ -122,7 +122,7 @@
                </div>
               </div>
             </div>
-            <a href="#" class="btn btn-primary">Edit Data</a>
+            <a href="{{ route('books.update', $book->id) }}" class="btn btn-primary">Edit Data</a>
           </div>
         </div>
       </div>

@@ -32,7 +32,7 @@
         <div class="card p-3">
           <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
-              <h3>{{ $book->title }}</h3>
+              <h3><strong>{{ $book->title }}</strong></h3>
               <strong class="alert alert-info px-2 py-1">{{ $book->bookCategory->category_name }}</strong>
             </div>
           </div>
@@ -40,69 +40,86 @@
             <div class="row">
               <div class="col-md-6">
                 <table class="table table-bordered">
-                    <tr>
-                        <th>Title</th>
-                        <td>{{ $book->title }}</td>
-                    </tr>
-                    <tr>
-                      <th>Author</th>
-                      <td>{{ $book->author }}</td>
-                    </tr>
-                    <tr>
-                      <th>Publisher</th>
-                      <td>{{ $book->publisher }}</td>
-                    </tr>
-                    <tr>
-                      <th>Description</th>
-                      <td>{{ $book->description }}</td>
-                    </tr>
-                    <tr>
-                      <th>ISBN</th>
-                      <td>{{ $book->isbn }}</td>
-                    </tr>
-                    <tr>
-                      <th>Pages</th>
-                      <td>{{ $book->pages }}</td>
-                    </tr>
-                    <tr>
-                      <th>Price</th>
-                      <td>{{ $book->price }}</td>
-                    </tr>
-                    <tr>
-                      <th>Language</th>
-                      <td>{{ $book->language }}</td>
-                    </tr>
-                    <tr>
-                      <th>Stock</th>
-                      <td>{{ $book->quantity }}</td>
-                    </tr>
-                    <tr>
-                      <th>Category</th>
-                      <td>{{ $book->bookCategory->category_name }}</td>
-                    </tr>
-                  </table>
+                  <tr>
+                    <th>Title</th>
+                    <td>{{ $book->title }}</td>
+                  </tr>
+                  <tr>
+                    <th>Author</th>
+                    <td>{{ $book->author }}</td>
+                  </tr>
+                  <tr>
+                    <th>Publisher</th>
+                    <td>{{ $book->publisher }}</td>
+                  </tr>
+                  <tr>
+                    <th>Year</th>
+                    <td>{{ $book->year }}</td>
+                  </tr>
+                  <tr>
+                    <th>ISBN</th>
+                    <td>{{ $book->isbn }}</td>
+                  </tr>
+                  <tr>
+                    <th>Pages</th>
+                    <td>{{ $book->pages }}</td>
+                  </tr>
+                  <tr>
+                    <th>Price</th>
+                    <td>{{ $book->price }}</td>
+                  </tr>
+                  <tr>
+                    <th>Language</th>
+                    <td>{{ $book->language }}</td>
+                  </tr>
+                  <tr>
+                    <th>Weight</th>
+                    <td>{{ $book->weight }} Kg</td>
+                  </tr>
+                  <tr>
+                    <th>Dimensions</th>
+                    <td>{{ $book->dimensions }} cm</td>
+                  </tr>
+                  <tr>
+                    <th>Quantity</th>
+                    <td>{{ $book->quantity }}</td>
+                  </tr>
+                  <tr>
+                    <th>Price</th>
+                    <td>{{ $book->price }}</td>
+                  </tr>
+                </table>
               </div>
               <div class="col">
                 <div class="d-flex justify-content-center">
-                    <div class="image">
-                        <div class="row">
-                          <div class="col">
-                            @if ($book->image === 'default_bookcover.jpg')
-                              <img src="{{ asset('images/' . $book->image) }}" class="img-fluid rounded"
-                                style="height: 300px; width: 200px; object-fit: cover;  border: 5px solid #d7d7d7;">
-                            @else
-                              <img src="{{ asset('storage/bookcovers/' . $book->image) }}" class="img-fluid rounded"
-                                style="height: 300px; width: 200px; object-fit: cover;  border: 5px solid #d7d7d7;" alt="{{ $book->image }}">
-                            @endif
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <p class="text-center">{{ $book->title }}</p>
-                          </div>
-                        </div>
+                  <div class="image mt-5">
+                    <div class="row">
+                      <div class="col">
+                        @if ($book->image === 'default_bookcover.jpg')
+                          <img src="{{ asset('images/' . $book->image) }}" class="img-fluid rounded"
+                            style="height: 450px; width: 300px; object-fit: cover;  border: 5px solid #d7d7d7;">
+                        @else
+                          <img src="{{ asset('storage/bookcovers/' . $book->image) }}" class="img-fluid rounded"
+                            style="height: 450px; width: 300px; object-fit: cover;  border: 5px solid #d7d7d7;"
+                            alt="{{ $book->image }}">
+                        @endif
                       </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <strong>{{$book->title}}</strong>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+               <div class="card p-5">
+                <strong>Description</strong>
+                <p>{{ $book->description }}</p>
+               </div>
               </div>
             </div>
             <a href="#" class="btn btn-primary">Edit Data</a>

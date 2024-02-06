@@ -1,124 +1,153 @@
-@extends('layouts.app') @section('content')
-<h1>Edit Book</h1>
+@extends('dashboard.layouts.master') @section('content')
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Book Management</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('books.index') }}">Books</a></li>
+              <li class="breadcrumb-item active">Update Book</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="container-fluid">
+        @if ($errors->any())
+          <div>
+            <ul>
+              @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">
+                  {{ $error }}
+                </div>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+        <div class="card p-3">
+          <form action="{{ route('books.edit', ['id' => $book->id]) }}" method="POST" enctype="multipart/form-data">
+            @csrf @method('PUT')
 
-{{-- Display validation errors --}}
-@if ($errors->any())
-<div>
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
+            <div class="row">
+              <div class="col">
 
-{{-- Form for updating the book --}}
-<form
-    action="{{ route('books.edit', ['id' => $book->id]) }}"
-    method="POST"
-    enctype="multipart/form-data"
->
-    @csrf @method('PUT')
+                <label for="book_category_id" class="form-label">Book_category</label>
+                <select name="book_category_id" class="form-control" required>
+                  <option value="" disabled>Select Book_category</option>
+                  @foreach ($categories as $id => $categoryName)
+                    <option value="{{ $id }}" {{ $book->book_category_id === $id ? 'selected' : '' }}>
+                      {{ $categoryName }}
+                    </option>
+                  @endforeach
+                </select>
 
-    <label for="title">Title:</label>
-    <input
-        type="text"
-        name="title"
-        value="{{ old('title', $book->title) }}"
-        required
-    />
+                <label for="nama_user" class="form-label">Book Title</label>
+                <input type="text" name="title" value="{{ old('title', $book->title) }}"
+                  placeholder="Masukkan nama lengkap" required class="form-control" />
 
-    <label for="author">Author:</label>
-    <input
-        type="text"
-        name="author"
-        value="{{ old('author', $book->author) }}"
-        required
-    />
+                <label for="author" class="form-label">Author</label>
+                <input name="author" value="{{ old('author', $book->author) }}" placeholder="Masukkan author"
+                  class="form-control" required />
 
-    <label for="description">Description:</label>
-    <textarea
-        name="description"
-        required
-        >{{ old('description', $book->description) }}</textarea
-    >
+                <!-- publisher -->
+                <label for="publisher" class="form-label">Publisher</label>
+                <input name="publisher" value="{{ old('publisher', $book->publisher) }}" placeholder="Masukkan publisher"
+                  class="form-control" required />
 
-    <label for="image">Image:</label>
-    <input type="file" name="image" />
+                <!-- year select -->
+                <label for="year" class="form-label">Year</label>
+                <input name="year" value="{{ old('year', $book->year) }}" placeholder="Masukkan tahun"
+                  class="form-control" required />
 
-    <label for="price">Price:</label>
-    <input
-        type="number"
-        name="price"
-        value="{{ old('price', $book->price) }}"
-        required
-    />
+                <!-- language -->
+                <label for="language" class="form-label">Language</label>
+                <input name="language" value="{{ old('language', $book->language) }}" placeholder="Masukkan bahasa"
+                  class="form-control" required />
 
-    <label for="category">Category:</label>
-    <select name="book_category_id" id="book_category_id">
-        <option value="" selected disabled>Select Category</option>
-        @foreach ($categories as $id => $categoryName)
-        <option value="{{ $id }}">{{ $categoryName }}</option>
-        @endforeach
-    </select>
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" placeholder="Masukkan description" rows="3" class="form-control">{{ old('description', $book->description) }}</textarea>
+              </div>
+              <div class="col">
 
-    <label for="publisher">Publisher:</label>
-    <input
-        type="text"
-        name="publisher"
-        value="{{ old('publisher', $book->publisher) }}"
-        required
-    />
+                <!-- isbn -->
+                <label for="isbn" class="form-label">ISBN</label>
+                <input name="isbn" value="{{ old('isbn', $book->isbn) }}" placeholder="Masukkan ISBN"
+                  class="form-control" />
 
-    <label for="year">Year:</label>
-    <input
-        type="text"
-        name="year"
-        value="{{ old('year', $book->year) }}"
-        required
-    />
+                <!-- pages -->
+                <label for="pages" class="form-label">Pages</label>
+                <input name="pages" value="{{ old('pages', $book->pages) }}" placeholder="Masukkan jumlah"
+                  class="form-control" />
 
-    <label for="isbn">ISBN:</label>
-    <input type="text" name="isbn" value="{{ old('isbn', $book->isbn) }}" />
+                <!-- weight -->
+                <label for="weight" class="form-label">Weight</label>
+                <input name="weight" value="{{ old('weight', $book->weight) }}" placeholder="Masukkan berat"
+                  class="form-control" />
 
-    <label for="language">Language:</label>
-    <input
-        type="text"
-        name="language"
-        value="{{ old('language', $book->language) }}"
-        required
-    />
+                <!-- dimensions -->
+                <label for="dimensions" class="form-label">Dimensions</label>
+                <input name="dimensions" value="{{ old('dimensions', $book->dimensions) }}"
+                  placeholder="Masukkan dimensi in centimeter" class="form-control" />
 
-    <label for="pages">Pages:</label>
-    <input
-        type="number"
-        name="pages"
-        value="{{ old('pages', $book->pages) }}"
-        required
-    />
+                <!-- quantity -->
+                <label for="quantity" class="form-label">Quantity</label>
+                <input name="quantity" value="{{ old('quantity', $book->quantity) }}" placeholder="Masukkan quantity"
+                  class="form-control" required />
 
-    <label for="weight">Weight:</label>
-    <input
-        type="number"
-        name="weight"
-        value="{{ old('weight', $book->weight) }}"
-    />
+                <!-- price -->
+                <label for="price" class="form-label">Price</label>
+                <input name="price" value="{{ old('price', $book->price) }}" placeholder="Masukkan harga"
+                  class="form-control" required />
 
-    <label for="dimensions">Dimensions:</label>
-    <input
-        type="text"
-        name="dimensions"
-        value="{{ old('dimensions', $book->dimensions) }}"
-    />
+                <label for="bookcover" class="col-md-4 col-form-label text-md-end">Book Cover</label>
+                <input id="bookcover" type="file" class="form-control @error('bookcover') is-invalid @enderror"
+                  name="bookcover">
+                @error('bookcover')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
 
-    <label for="quantity">Quantity:</label>
-    <input
-        type="number"
-        name="quantity"
-        value="{{ old('quantity', $book->quantity) }}"
-        required
-    />
+              </div>
+            </div>
 
-    <button type="submit">Update Book</button>
-</form>
+            <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#confirmationModal">
+              Update Book
+            </button>
+
+            <!-- Confirmation alert modal -->
+            <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog"
+              aria-labelledby="confirmationModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="confirmationModalLabel">Confirmation</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are you sure you want to update this book?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                      Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                      Update
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection

@@ -8,8 +8,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item">Home</li>
-              <li class="breadcrumb-item">Book Categories</li>
+              <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('book_categories.index') }}">Book Categories</a></li>
               <li class="breadcrumb-item active">Update Category</li>
             </ol>
           </div>

@@ -14,6 +14,12 @@ class BookController extends Controller
         $books = Book::with('bookCategory')->paginate(10);
         return view('dashboard.books.index', ['books' => $books]);
     }
+
+    public function detailBook($id)
+    {
+        $book = Book::find($id);
+        return view('dashboard.books.detail', ['book' => $book]);
+    }
     
 
    

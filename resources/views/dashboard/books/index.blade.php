@@ -59,7 +59,6 @@
                     <table class="table table-striped">
                       <thead>
                         <tr>
-                          <th>Image</th>
                           <th>Title</th>
                           <th>Author</th>
                           <th>Category</th>
@@ -70,26 +69,6 @@
                       <tbody>
                         @foreach ($books as $book)
                           <tr>
-                            <td>
-                              <div class="image">
-                                <div class="row">
-                                  <div class="col">
-                                    @if ($book->bookcover === 'default_bookcover.jpg')
-                                      <img src="{{ asset('images/' . $book->bookcover) }}" class="img-fluid rounded"
-                                        style="height: 300px; width: 200px; object-fit: cover;  border: 5px solid #d7d7d7;">
-                                    @else
-                                      <img src="{{ asset('storage/bookcovers/' . $book->bookcover) }}" class="img-fluid rounded"
-                                        style="height: 300px; width: 200px; object-fit: cover;  border: 5px solid #d7d7d7;" alt="{{ $book->bookcover }}">
-                                    @endif
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col">
-                                    <p class="text-center">{{ $book->title }}</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </td>
                             <td>{{ $book->title }}</td>
                             <td>{{ $book->author }}</td>
                             <td>
@@ -100,8 +79,8 @@
                               {{ $book->description }}
                             </td>
                             <td>
-                                <a href="{{ route('books.update', ['id' => $book->id]) }}"
-                                  class="btn btn-primary">Edit</a>
+                                <a href="{{ route('books.detail', ['id' => $book->id]) }}"
+                                  class="btn btn-primary">Detail</a>
     
                                 <form action="{{ route('books.delete', ['id' => $book->id]) }}"
                                   method="POST" class="d-inline">

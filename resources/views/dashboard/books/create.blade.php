@@ -94,9 +94,9 @@
                 <label for="price" class="form-label">Price</label>
                 <input name="price" value="{{ old('price') }}" placeholder="Masukkan harga" class="form-control" />
 
-                <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('Image')}}</label>
-                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image">
-                @error('image')
+                <label for="bookcover" class="col-md-4 col-form-label text-md-end">{{ __('Book_Cover')}}</label>
+                <input id="bookcover" type="file" class="form-control @error('bookcover') is-invalid @enderror" name="bookcover">
+                @error('bookcover')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
                 </span>

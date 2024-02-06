@@ -12,9 +12,9 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::with('bookCategory')->paginate(10);
-
         return view('dashboard.books.index', ['books' => $books]);
     }
+    
 
    
     public function createBook() {
@@ -29,6 +29,22 @@ class BookController extends Controller
         $book = Book::find($id);
         $categories = BookCategory::pluck('category_name', 'id');
         return view('dashboard.books.update', compact('book', 'categories'));
+    }
+
+    private function handleBookCoverUpload(Request $request, $currentBookCver)
+    {
+        if ($request->hasFile('bookcover') && $request->file('bookcover')->isValid()) {
+            $bookcover = $request->file('bookcover');
+            $filename = time() . '.' . $bookcover->getClientOriginalExtension();
+
+            // Save the file in the 'public/bookcovers' directory
+            $bookcover->storeAs('public/bookcovers', $filename);
+
+            return $filename; // Return the generated filename
+        }
+
+        // If no new bookcover file is provided, return the current bookcover filename
+        return $currentBookCver;
     }
 
     public function storeBook(Request $request) {
@@ -58,6 +74,8 @@ class BookController extends Controller
             'image' => 'Image must be a file of type: jpeg, png, jpg, gif, svg. Max: 2048 KB',
         ]);
 
+        $filename = $this->handleBookCoverUpload($request, 'default_book_cover.jpg');
+
         $book =[
             'book_category_id' => $request->book_category_id,
             'title' => $request->title,
@@ -72,12 +90,12 @@ class BookController extends Controller
             'dimensions' => $request->dimensions,
             'price' => $request->price,
             'quantity' => $request->quantity,
-            'image' => $request->image,
+            'image' => $filename,
             'created_at' => now(),
             'updated_at' => now(),
         ];
 
-        $book = Book::create($book);
+        Book::create($book);
 
         return redirect()->route('books.index')->with('success', 'Book created successfully');
     }

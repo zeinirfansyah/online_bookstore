@@ -71,11 +71,24 @@
                         @foreach ($books as $book)
                           <tr>
                             <td>
-                              <img src="{{ $book->image }}" alt="{{ $book->title }}" class="img-thumbnail"
-                                style="
-                                                        max-width: 100px;
-                                                        max-height: 100px;
-                                                    " />
+                              <div class="image">
+                                <div class="row">
+                                  <div class="col">
+                                    @if ($book->bookcover === 'default_bookcover.jpg')
+                                      <img src="{{ asset('images/' . $book->bookcover) }}" class="img-fluid rounded"
+                                        style="height: 300px; width: 200px; object-fit: cover;  border: 5px solid #d7d7d7;">
+                                    @else
+                                      <img src="{{ asset('storage/bookcovers/' . $book->bookcover) }}" class="img-fluid rounded"
+                                        style="height: 300px; width: 200px; object-fit: cover;  border: 5px solid #d7d7d7;" alt="{{ $book->bookcover }}">
+                                    @endif
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    <p class="text-center">{{ $book->title }}</p>
+                                  </div>
+                                </div>
+                              </div>
                             </td>
                             <td>{{ $book->title }}</td>
                             <td>{{ $book->author }}</td>

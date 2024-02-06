@@ -62,7 +62,7 @@ class BookController extends Controller
             'year' => 'required',
             'isbn' => 'unique:books,isbn',
             'language' => 'required|string',
-            'price' => 'required|regex:/^[0-9]+$/',
+            'price' => 'required|regex:/^[0-9]+(\.[0-9]+)?$/',
             'quantity' => 'required|regex:/^[0-9]+$/',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], [
@@ -117,30 +117,30 @@ class BookController extends Controller
 
         $validate = $request->validate([
             'book_category_id' => 'required',
-            'title' => 'required',
-            'author' => 'required',
-            'description' => 'required',
-            'publisher' => 'required',
+            'title' => 'required|string',
+            'author' => 'required|string',
+            'publisher' => 'required|string',
             'year' => 'required',
-            'language' => 'required',
-            'pages' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
+            'isbn' => 'unique:books,isbn,' . $id,
+            'language' => 'required|string',
+            'price' => 'required|regex:/^[0-9]+(\.[0-9]+)?$/',
+            'quantity' => 'required|regex:/^[0-9]+$/',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], [
-            'book_category_id.required' => 'Book category is required',
-            'title.required' => 'Title is required',
-            'author.required' => 'Author is required',
-            'description.required' => 'Description is required',
-            'image' => 'Image must be a file of type: jpeg, png, jpg, gif, svg. Max: 2048 KB',
-            'price.required' => 'Price is required',
-            'category.required' => 'Category is required',
-            'publisher.required' => 'Publisher is required',
-            'year.required' => 'Year is required',
-            'language.required' => 'Language is required',
-            'pages.required' => 'Pages is required',
-            'quantity.required' => 'Quantity is required',
+            'required' => ':attribute harus diisi.',
+            'unique' => ':attribute sudah ada.',
+            'string' => ':attribute harus string.',
+            'max' => ':attribute maksimal 255 karakter.',
+            'min' => ':attribute minimal 8 karakter.',
+            'email' => ':attribute harus email.',
+            'image' => ':attribute harus jpeg, png, jpg.',
+            'mimes' => ':attribute harus jpeg, png, jpg.',
+            'max' => ':attribute maksimal 2 MB.',
+            'regex' => 'pastikan :attribute hanya diisi oleh angka.',
         ]);
+
+        $currentBookCover = $book->image;
+        $filename = $this->handleBookCoverUpload($request, $currentBookCover);
 
         $book =[
             'book_category_id' => $request->book_category_id,
@@ -156,13 +156,14 @@ class BookController extends Controller
             'dimensions' => $request->dimensions,
             'price' => $request->price,
             'quantity' => $request->quantity,
-            'image' => $request->image,
+            'image' => $filename,
             'created_at' => now(),
             'updated_at' => now(),
         ];
+        
 
         $book = Book::where('id', $id)->update($book);
 
-        return redirect()->route('books.index')->with('success', 'Book updated successfully');
+        return redirect()->route('books.detail', ['id' => $id])->with('success', 'Book updated successfully');
     }
 }

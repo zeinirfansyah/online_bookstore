@@ -62,8 +62,6 @@
                           <th>Title</th>
                           <th>Author</th>
                           <th>Category</th>
-                          <th>Publisher</th>
-                          <th>Language</th>
                           <th>Quantity</th>
                           <th>Price</th>
                           <th>Actions</th>
@@ -77,8 +75,6 @@
                             <td>
                               {{ $book->bookCategory->category_name }}
                             </td>
-                            <td>{{ $book->publisher }}</td>
-                            <td>{{ $book->language }}</td>
                             <td>{{ $book->quantity }}</td>
                             <td>Rp.{{ $book->price }}</td>
                             <td>

@@ -37,7 +37,7 @@
               <div class="col">
 
                 <label for="book_category_id" class="form-label">Book_category</label>
-                <select name="book_category_id" class="form-control">
+                <select name="book_category_id" class="form-control" required>
                   <option value="" disabled>Select Book_category</option>
                   @foreach ($categories as $id => $categoryName)
                   <option value="{{ $id }}">{{ $categoryName }}</option>
@@ -48,25 +48,22 @@
                 <input type="text" name="title" value="{{ old('title') }}" placeholder="Masukkan nama lengkap" required class="form-control" />
 
                 <label for="author" class="form-label">Author</label>
-                <input name="author" value="{{ old('author') }}" placeholder="Masukkan author" class="form-control" />
-
-                <!-- alamat text areaa -->
-                <label for="description" class="form-label">Description</label>
-                <textarea name="description" placeholder="Masukkan description" rows="3" class="form-control">{{ old('description') }}</textarea>
-
+                <input name="author" value="{{ old('author') }}" placeholder="Masukkan author" class="form-control" required />
+               
                 <!-- publisher -->
                 <label for="publisher" class="form-label">Publisher</label>
-                <input name="publisher" value="{{ old('publisher') }}" placeholder="Masukkan publisher" class="form-control" />
+                <input name="publisher" value="{{ old('publisher') }}" placeholder="Masukkan publisher" class="form-control" required/>
 
                 <!-- year select -->
                 <label for="year" class="form-label">Year</label>
-                <input name="year" value="{{ old('year') }}" placeholder="Masukkan tahun" class="form-control" />
+                <input name="year" value="{{ old('year') }}" placeholder="Masukkan tahun" class="form-control" required/>
 
                 <!-- language -->
                 <label for="language" class="form-label">Language</label>
-                <input name="language" value="{{ old('language') }}" placeholder="Masukkan bahasa" class="form-control" />
+                <input name="language" value="{{ old('language') }}" placeholder="Masukkan bahasa" class="form-control" required/>
                 
-                
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" placeholder="Masukkan description" rows="3" class="form-control">{{ old('description') }}</textarea>
               </div>
               <div class="col">
 
@@ -88,11 +85,11 @@
 
                 <!-- quantity -->
                 <label for="quantity" class="form-label">Quantity</label>
-                <input name="quantity" value="{{ old('quantity') }}" placeholder="Masukkan quantity" class="form-control" />
+                <input name="quantity" value="{{ old('quantity') }}" placeholder="Masukkan quantity" class="form-control" required/>
 
               <!-- price -->
                 <label for="price" class="form-label">Price</label>
-                <input name="price" value="{{ old('price') }}" placeholder="Masukkan harga" class="form-control" />
+                <input name="price" value="{{ old('price') }}" placeholder="Masukkan harga" class="form-control" required/>
 
                 <label for="bookcover" class="col-md-4 col-form-label text-md-end">{{ __('Book_Cover')}}</label>
                 <input id="bookcover" type="file" class="form-control @error('bookcover') is-invalid @enderror" name="bookcover">

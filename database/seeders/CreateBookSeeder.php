@@ -18,17 +18,17 @@ class CreateBookSeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             DB::table('books')->insert([
-                'title' => $faker->sentence(3),
+                'book_category_id' => $faker->numberBetween(52, 54),
+                'title' => $faker->sentence(rand(1, 3)),
                 'author' => $faker->name,
                 'description' => $faker->paragraph,
                 'image' => $faker->imageUrl(),
                 'price' => $faker->randomFloat(2, 10, 50),
-                'category' => $faker->word,
                 'publisher' => $faker->company,
                 'year' => $faker->year,
-                'isbn' => $faker->isbn13,
+                'isbn' => $faker->isbn10(),
                 'pages' => $faker->numberBetween(100, 500),
-                'language' => $faker->languageCode,
+                'language' => $faker->country(),
                 'weight' => $faker->randomFloat(2, 0.5, 2),
                 'dimensions' => $faker->randomNumber(2) . 'x' . $faker->randomNumber(2),
                 'quantity' => $faker->numberBetween(50, 200),

@@ -18,7 +18,7 @@ class CreateBookCategorySeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             DB::table('book_categories')->insert([
-                'category_name' => $faker->name(),
+                'category_name' => $faker->bloodType(),
                 'category_description' => $faker->sentence(2),
                 'created_at' => now(),
                 'updated_at' => now(),

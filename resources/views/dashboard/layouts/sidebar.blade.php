@@ -57,51 +57,51 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/dashboard.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-id-card"></i>
             <p>Customers</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/dashboard.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-truck"></i>
             <p>Suppliers</p>
           </a>
         </li>
         <li class="nav-header">Transaksi</li>
         <li class="nav-item">
-          <a href="pages/dashboard.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-money-bill"></i>
             <p>Pengeluaran</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/dashboard.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-download"></i>
             <p>Pembelian</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/dashboard.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-upload"></i>
             <p>Penjualan</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/dashboard.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-cart-arrow-down"></i>
             <p>Transaksi Lama</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/dashboard.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-cart-arrow-down"></i>
             <p>Transaksi Baru</p>
           </a>
         </li>
         <li class="nav-header">Reports</li>
         <li class="nav-item">
-          <a href="pages/dashboard.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-file"></i>
             <p>Report</p>
           </a>
@@ -127,7 +127,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/dashboard.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-cog"></i>
             <p>Setting</p>
           </a>

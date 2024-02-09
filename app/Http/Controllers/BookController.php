@@ -9,10 +9,43 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::with('bookCategory')->paginate(10);
-        return view('dashboard.books.index', ['books' => $books]);
+        $booksQuery = Book::query();
+
+        // search by everything if a search query is provided
+        if ($request->has('search')) {
+            $searchQuery = $request->search;
+            $booksQuery->where(function ($query) use ($searchQuery) {
+                $query->where('title', 'like', "%$searchQuery%")
+                    ->orWhere('author', 'like', "%$searchQuery%")
+                    ->orWhere('publisher', 'like', "%$searchQuery%")
+                    ->orWhere('year', 'like', "%$searchQuery%")
+                    ->orWhere('isbn', 'like', "%$searchQuery%")
+                    ->orWhere('language', 'like', "%$searchQuery%")
+                    ->orWhere('price', 'like', "%$searchQuery%")
+                    ->orWhere('quantity', 'like', "%$searchQuery%");
+            });
+        }
+
+        // filter by category if a category is specified in the search query
+        if ($request->has('category') && $request->category !== 'all') {
+            $categoryQuery = $request->category;
+            $booksQuery->whereHas('bookCategory', function ($query) use ($categoryQuery) {
+                $query->where('category_name', '=', $categoryQuery);
+            });
+        }
+
+        // Retrieve all categories for the dropdown
+        $categories = BookCategory::all();
+
+        // paginate the results with 10 items per page
+        $books = $booksQuery->with('bookCategory')->paginate(10);
+
+        return view('dashboard.books.index', [
+            'books' => $books,
+            'categories' => $categories,
+        ]);
     }
 
     public function detailBook($id)
@@ -20,18 +53,20 @@ class BookController extends Controller
         $book = Book::find($id);
         return view('dashboard.books.detail', ['book' => $book]);
     }
-    
 
-   
-    public function createBook() {
+
+
+    public function createBook()
+    {
         // Ambil semua kategori buku
-    $categories = BookCategory::pluck('category_name', 'id');
+        $categories = BookCategory::pluck('category_name', 'id');
 
-    // Kirim data kategori ke view
-    return view('dashboard.books.create', compact('categories'));
+        // Kirim data kategori ke view
+        return view('dashboard.books.create', compact('categories'));
     }
 
-    public function updateBook($id) {
+    public function updateBook($id)
+    {
         $book = Book::find($id);
         $categories = BookCategory::pluck('category_name', 'id');
         return view('dashboard.books.update', compact('book', 'categories'));
@@ -53,7 +88,8 @@ class BookController extends Controller
         return $currentBookCver;
     }
 
-    public function storeBook(Request $request) {
+    public function storeBook(Request $request)
+    {
         $validate = $request->validate([
             'book_category_id' => 'required',
             'title' => 'required|string',
@@ -80,7 +116,7 @@ class BookController extends Controller
 
         $filename = $this->handleBookCoverUpload($request, 'default_book_cover.jpg');
 
-        $book =[
+        $book = [
             'book_category_id' => $request->book_category_id,
             'title' => $request->title,
             'author' => $request->author,
@@ -104,15 +140,16 @@ class BookController extends Controller
         return redirect()->route('books.index')->with('success', 'Book created successfully');
     }
 
-    public function deleteBook($id) {
+    public function deleteBook($id)
+    {
         $book = Book::find($id);
         $book->delete();
 
         return redirect()->route('books.index')->with('success', 'Book updated successfully');
-    
     }
 
-    public function editBook(Request $request, $id) {
+    public function editBook(Request $request, $id)
+    {
         $book = Book::find($id);
 
         $validate = $request->validate([
@@ -142,7 +179,7 @@ class BookController extends Controller
         $currentBookCover = $book->image;
         $filename = $this->handleBookCoverUpload($request, $currentBookCover);
 
-        $book =[
+        $book = [
             'book_category_id' => $request->book_category_id,
             'title' => $request->title,
             'author' => $request->author,
@@ -160,7 +197,7 @@ class BookController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ];
-        
+
 
         $book = Book::where('id', $id)->update($book);
 

@@ -131,7 +131,9 @@
                     </tbody>
                   </table>
                   <br />
+                 <div class="mx-3">
                   {{ $books->appends(['search' => request('search'), 'category' => request('category')])->links('pagination::bootstrap-5') }}
+                 </div>
                 </div>
               </div>
             </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\BookCategory;
+use App\Models\Supplier;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -42,9 +44,20 @@ class BookController extends Controller
         // paginate the results with 10 items per page
         $books = $booksQuery->with('bookCategory')->paginate(10);
 
+
+        // Retrieve total books
+        $totalBooks = Book::count();
+        $totalCategories = BookCategory::count();
+        $totalSuppliers = Supplier::count();
+        $totalCustomers = User::where('role', 'customer')->count();
+
         return view('dashboard.books.index', [
             'books' => $books,
             'categories' => $categories,
+            'totalBooks' => $totalBooks,
+            'totalCategories' => $totalCategories,
+            'totalSuppliers' => $totalSuppliers,
+            'totalCustomers' => $totalCustomers,
         ]);
     }
 

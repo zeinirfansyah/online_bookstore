@@ -41,7 +41,7 @@ class UserDataController extends Controller
         $users = $usersQuery->where('role', '!=', 'manager')->paginate(8);
 
         // Pass the roles to the view for filtering
-        $roles = ['all roles', 'admin', 'user'];
+        $roles = ['all roles', 'admin', 'customer'];
 
         return view('dashboard.users.index', [
             'users' => $users,
@@ -109,7 +109,7 @@ class UserDataController extends Controller
     public function updateUser($id)
     {
         $user = User::find($id);
-        $roles = ['admin', 'user'];
+        $roles = ['admin', 'customer'];
         return view('dashboard.users.update', compact('user', 'roles'));
     }
 

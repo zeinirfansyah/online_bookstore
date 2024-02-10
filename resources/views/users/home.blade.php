@@ -12,7 +12,7 @@
                     </div>
                     @endif
 
-                    <h2>Kamu login sebagai User</h2>
+                    <h2>Kamu login sebagai {{ Auth::user()->role }}</h2>
                 </div>
             </div>
         </div>

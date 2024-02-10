@@ -4,9 +4,9 @@
         <!-- small box -->
         <div class="small-box bg-white">
             <div class="inner">
-                <h3>150</h3>
+                <h3>{{ $totalBooks }}</h3>
 
-                <p>New Orders</p>
+                <p>Total Books</p>
             </div>
             <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -18,9 +18,9 @@
         <!-- small box -->
         <div class="small-box bg-white">
             <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>{{ $totalCategories }}<sup style="font-size: 20px"></sup></h3>
 
-                <p>Bounce Rate</p>
+                <p>Total Categories</p>
             </div>
             <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -32,9 +32,9 @@
         <!-- small box -->
         <div class="small-box bg-white">
             <div class="inner">
-                <h3>44</h3>
+                <h3>{{ $totalCustomers }}</h3>
 
-                <p>User Registrations</p>
+                <p>Total Customers</p>
             </div>
             <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -46,9 +46,9 @@
         <!-- small box -->
         <div class="small-box bg-white">
             <div class="inner">
-                <h3>65</h3>
+                <h3>{{ $totalSuppliers }}</h3>
 
-                <p>Unique Visitors</p>
+                <p>Total Suppliers</p>
             </div>
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>

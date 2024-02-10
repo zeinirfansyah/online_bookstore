@@ -22,7 +22,7 @@
     <div class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div>@includeif('dashboard.layouts.stat_cards')</div>
+        <div>@includeif('dashboard.layouts.master_stat_cards')</div>
         <!-- filter and search -->
         <div class="row">
           <div class="col-md-12">

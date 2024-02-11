@@ -28,7 +28,7 @@
             <div class="container-fluid">
               <div class="card">
                 <div class="card-header">
-                  <a href="{{ route('book_categories.create') }}" class="btn btn-primary">Add Category</a>
+                  <a href="{{ route('book_categories.create') }}" class="btn btn-default">Add Category</a>
 
                   <div class="card-tools">
                     <form method="GET" action="{{ route('book_categories.index') }}" class="form-inline">
@@ -75,7 +75,7 @@
                           </td>
                           <td>
                             <a href="{{ route('book_categories.update', ['id' => $book_category->id]) }}"
-                              class="btn btn-primary">Edit</a>
+                              class="btn btn-default">Edit</a>
 
                             <form action="{{ route('book_categories.delete', ['id' => $book_category->id]) }}"
                               method="POST" class="d-inline">

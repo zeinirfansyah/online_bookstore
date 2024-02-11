@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\BookCategory;
+use App\Models\Supplier;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BookCategoryController extends Controller
@@ -25,8 +28,20 @@ class BookCategoryController extends Controller
         // Paginate the results with 8 items per page
         $book_categories = $book_categories_query->paginate(8);
 
+        // count
+        $totalBooks = Book::count();
+        $totalCategories = BookCategory::count();
+        $totalSuppliers = Supplier::count();
+        $totalCustomers = User::where('role', 'customer')->count();
+
         return view('dashboard.book_categories.index', [
             'book_categories' => $book_categories,
+
+            // counts
+            'totalBooks' => $totalBooks,
+            'totalCategories' => $totalCategories,
+            'totalSuppliers' => $totalSuppliers,
+            
         ]);
     }
 

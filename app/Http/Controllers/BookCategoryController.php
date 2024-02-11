@@ -41,6 +41,7 @@ class BookCategoryController extends Controller
             'totalBooks' => $totalBooks,
             'totalCategories' => $totalCategories,
             'totalSuppliers' => $totalSuppliers,
+            'totalCustomers' => $totalCustomers
             
         ]);
     }

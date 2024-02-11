@@ -89,7 +89,7 @@
                           <td>{{ $book->quantity }}</td>
                           <td>Rp.{{ $book->price }}</td>
                           <td>
-                            <a href="{{ route('books.detail', ['id' => $book->id]) }}" class="btn btn-primary">Detail</a>
+                            <a href="{{ route('books.detail', ['id' => $book->id]) }}" class="btn btn-default">Detail</a>
 
                             <form action="{{ route('books.delete', ['id' => $book->id]) }}" method="POST"
                               class="d-inline">

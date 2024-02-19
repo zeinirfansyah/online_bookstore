@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\BookCategory;
+use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,8 +26,20 @@ class CustomerController extends Controller
 
         $users = $usersQuery->where('role', 'customer')->paginate(10);
 
+
+         // Retrieve total books
+         $totalBooks = Book::count();
+         $totalCategories = BookCategory::count();
+         $totalSuppliers = Supplier::count();
+         $totalCustomers = User::where('role', 'customer')->count();
+
         return view('dashboard.customers.index', [
-            'users' => $users
+            'users' => $users,
+
+            'totalBooks' => $totalBooks,
+            'totalCategories' => $totalCategories,
+            'totalSuppliers' => $totalSuppliers,
+            'totalCustomers' => $totalCustomers,
         ]);
     }
 }

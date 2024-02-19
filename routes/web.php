@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookCategoriesController;
 use App\Http\Controllers\BookCategoryController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserDataController;
@@ -58,6 +59,10 @@ Route::middleware(['auth'])->group(function(){
             Route::put('/{id}/update', [BookCategoryController::class, 'editBookCategory'])->name('book_categories.edit');
             Route::delete('/{id}/delete', [BookCategoryController::class, 'deleteBookCategory'])->name('book_categories.delete');
           
+        });
+
+        Route::prefix('admin/customers')->group(function () {
+            Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
         });
     });
 
